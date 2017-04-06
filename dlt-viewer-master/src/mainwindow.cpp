@@ -416,6 +416,7 @@ void MainWindow::initSearchTable()
 
     QFont searchtableViewFont = m_searchresultsTable->font();
     searchtableViewFont.setPointSize(settings->fontSize);
+    searchtableViewFont.setFixedPitch(settings->fontFixedPitch); //jinube
     m_searchresultsTable->setFont(searchtableViewFont);
 
     // Rescale the height of a row to choosen font size + 8 pixels
@@ -1612,6 +1613,7 @@ void MainWindow::applySettings()
 {
     QFont tableViewFont = ui->tableView->font();
     tableViewFont.setPointSize(settings->fontSize);
+    tableViewFont.setFixedPitch(settings->fontFixedPitch); //jinube
     ui->tableView->setFont(tableViewFont);
     // Rescale the height of a row to choosen font size + 8 pixels
     ui->tableView->verticalHeader()->setDefaultSectionSize(settings->fontSize+8);

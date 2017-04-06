@@ -72,6 +72,7 @@ public:
     int appendDateTime;
 
     int fontSize;
+    int fontFixedPitch; //jinube
     int showIndex;
     int showTime;
     int showTimestamp;

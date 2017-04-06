@@ -222,6 +222,7 @@ void SettingsDialog::writeDlg()
 
     /* table */
     ui->spinBoxFontSize->setValue(fontSize);
+    ui->checkBoxFixedPitch->setCheckState(fontFixedPitch?Qt::Checked:Qt::Unchecked);  //jinube
 
     /* Time settings */
     ui->groupBoxAutomaticTimeSettings->setChecked(automaticTimeSettings?Qt::Checked:Qt::Unchecked);
@@ -377,6 +378,7 @@ void SettingsDialog::readDlg()
 
     /* table */
     fontSize = ui->spinBoxFontSize->value();
+    fontFixedPitch = ( ui->checkBoxFixedPitch->checkState() == Qt::Checked);  //jinube
 
     /* Time settings */
     automaticTimeSettings = ( ui->groupBoxAutomaticTimeSettings->isChecked() == true ? 1:0);
@@ -459,6 +461,7 @@ void SettingsDialog::writeSettings(QMainWindow *mainwindow)
 
     /* table */
     settings->setValue("startup/fontSize",fontSize);
+    settings->setValue("startup/fontFixedPitch",fontFixedPitch);  //jinube
     settings->setValue("startup/automaticTimeSettings",automaticTimeSettings);
     settings->setValue("startup/automaticTimezoneFromDlt",automaticTimezoneFromDlt);
     settings->setValue("startup/utcOffset",utcOffset);
@@ -531,6 +534,7 @@ void SettingsDialog::readSettings()
 
     /* table */
     fontSize = settings->value("startup/fontSize",8).toInt();
+    fontFixedPitch = settings->value("startup/fontFixedPitch",0).toInt();
     automaticTimeSettings = settings->value("startup/automaticTimeSettings",1).toInt();
     automaticTimezoneFromDlt = settings->value("startup/automaticTimezoneFromDlt",1).toInt();
     utcOffset = settings->value("startup/utcOffset",QVariant((qlonglong)timezone*-1)).toLongLong();

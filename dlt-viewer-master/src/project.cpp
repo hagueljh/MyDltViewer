@@ -672,6 +672,10 @@ bool Project::Load(QString filename)
               {
                   settings->fontSize = xml.readElementText().toInt();
               }
+              if(xml.name() == QString("fontFixedPitch")) //jinube
+              {
+                  settings->fontFixedPitch = xml.readElementText().toInt();
+              }
               if(xml.name() == QString("automaticTimeSettings"))
               {
                   settings->automaticTimeSettings = xml.readElementText().toInt();
@@ -1036,6 +1040,7 @@ bool Project::Save(QString filename)
     xml.writeStartElement("settings");
         xml.writeStartElement("table");
             xml.writeTextElement("fontSize",QString("%1").arg(settings->fontSize));
+            xml.writeTextElement("fontFixedPitch",QString("%1").arg(settings->fontFixedPitch)); //jinube
             xml.writeTextElement("automaticTimeSettings",QString("%1").arg(settings->automaticTimeSettings));
             xml.writeTextElement("utcOffset",QString("%1").arg(settings->utcOffset));
             xml.writeTextElement("dst",QString("%1").arg(settings->dst));
