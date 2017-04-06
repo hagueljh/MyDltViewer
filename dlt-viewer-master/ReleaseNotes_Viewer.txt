@@ -1,0 +1,500 @@
+DLT Viewer  - Release Notes
+===========================
+Alexander Wenzel <Alexander.AW.Wenzel@bmw.de>
+
+Version
+-------
+Version 2.18.0 RELEASE
+
+Known issues
+------------
+
+  * none
+
+
+Changes
+-------
+
+2.18.0
+   * Bugfixes:
+      Fixed: SaveAs showing corrupted messages or crash of dlt-viewer.
+             Rollback of QDltFile map feature, which is unstable.
+      Fixed: Jump to line not working when filter enabled
+      Fixed: Restore of windows geometry
+      Fixed: The reconnect timeout is not working for UDP
+      Fix check box in file transfer plugin view
+      Fix for search prediction crash issue
+      Limit symbol visibility in plugins
+   * Performance improvement: Multithreaded DLT file parser
+   * Make dlt-viewer show up as an option in file managers.
+   * DBus plugin: Check if messages has Apid "DBUS" as valid dbus message
+   * Enable build for MAC
+   * Mark the next button in the search dialog as default
+   * DBUS plugin: read configuration file to define APID/CTID to
+     enable DBus message decoding
+   * Add cmake build support
+
+2.17.0
+  * Updated and improved documentation
+  * Added the option to use UDP as transport protocol
+  * Drag&Drop Plugin Config files: dont ask which plugin if only 1 plugin active
+  * Implemented advanced Search with Payload Boundaries
+  * Default directory usage for WIN and LINUX: Config/Filters/Cache -> homePath/tempPath
+  * Fixed some warnings concerning datatypes
+  * Fixed manual tableview scrolling with keyboard arrows and PageUp/Down
+  * Show connection state in toolbar button icon
+  * Enabled interaction with search results while a search is ongoing
+  * Fixed issue with not closing search dialog when main window is closed
+  * Implemented UTF8 export
+  * Enabled C++11 support
+  * Increased scrolling performance with large files by using memory mapped file access
+  * Search history feature added
+  * Search text prediction feature added
+
+2.16.0
+  * Initialize member variable. 
+    Fixes possible decoding problems in non-verbose mode because dltType is evaluated in toString()
+  * QT version set to 5.5.1
+  * Made MSVC 32bit and 64bit builds possible
+  * Enable DLT-Viewer to export Decoded DLT Traces as .dlt file
+  * Splitting functionality fixed for Windows
+
+2.15.0
+  * Using QStandardPaths::CacheLocation instead of '/tmp' for temporary files
+  * Added -std=gnu99, -std=gnu++11, -Wall and -Wextra compiler flags, pedantic commented out yet
+  * Added possibility to copy search table selections to clipboard using the context menu or Ctrl+C
+  * Unified Windows build script for local build and Jenkins job
+  * Made menu bar accessible by [ALT+...] combinations and the [F10] key
+  * Improved the [TAB] key focus behavior and focus visualization of some elements
+  * Added more stability for loading large files under 32bit Windows
+  * Preventing possible division by zero when using the "Append DLT File" menu option
+  * Added preparations for 64bit Windows builds
+  * Replaced some icons and deleted an unused icon due to licence issues
+  * Removed executable bits from all .png files
+
+2.14.1
+  * Copy new plugin to SDK.
+  * DLT Logstorage Configuration File Creator
+  * Added 4708PREFIX to install paths to be able to install to custom location given on command line
+  * Update qt to version 5.5.0
+  * Added .cproject Eclipse file to gitignore
+  * Bug fix tableview jump to the right edge
+  * Bug Fixed After disabling index row in table settings it doesn't jump anymore to correct entry in main view after searching for a term
+  * Fix path to dlt.h. pkg-config returns include path with dlt present. Remove it from #include<> * Fix call to dlt_get_version() to pass length.
+  * Fixed: Filter is not automatically activated on open of a dlp file
+
+2.14.0
+  * Set Line Endings to LF. Add also .gitattributes, to change all further commits in LF. For more info look at http://git-scm.com/docs/gitattributes
+  * Improved const-correctness inside qdlt library. Note: plugin interfaces left untouched
+  * Enable the QMAKE_RPATHDIR to avoid exporting of LD_LIBRARY_PATH when using the tool without installing
+  * Fix decoded/ encoded search entries
+  * Fix Inconsintent handling of pluginEnabled checkbox. Now it decode the search results equal to the main window items
+  * In case of errors during export, exportMsg function just logs to qDebug() but does not give user information if export is ok or has failed
+    Function even will stop on first error, instead of skipping invalid messages
+  * Fix "search result does not jump to correct message when "sort by time" is checked"
+    Now jump to correct order after a double click an a search entry while "sort by time" is enabled or disabled
+  * Rearrange TabStop-order in dialog forms
+  * Fix for compiling DLT viewer for QT4 and 5. Replacing QT5-only method QComboBox::setCurrentText(...) as suggested here: 
+    http://doc.qt.io/qt-5/qcombobox.html#currentText-prop "The setter setCurrentText() simply calls setEditText() if the combo box is editable. 
+    Otherwise, if there is a matching text in the list, currentIndex is set to the corresponding index"
+  * Update qt to version 5.4.1
+  * Fix Linux build
+  * Adding support for new macros to the daemon. new macros: DLT_HEX8(VAR) 8bits variable displayed in hexadecimal with "0x" prefix DLT_HEX16(VAR) 
+    16bits displayed in hexadecimal with "0x" prefix DLT_HEX32(VAR) 32bits displayed in hexadecimal with "0x" prefix DLT_HEX64(VAR) 64bits displayed in 
+    hexadecimal with "0x" prefix DLT_BIN8(VAR) 8bits variable displayed in binary with "0b" prefix DLT_BIN16(VAR) 16bits variable displayed in binary with "0b" prefix
+  * Export SessionID/ProcessID to Clipboard and CSV Export
+  * Fixed typos and rephrased some sentences
+  * Cleanup: renamed file qdltserialconenction.cpp into qdltserialconnection.cpp
+  * Filter (separate regex settings and ignorecase) and Filterdialog redesign replaced icons with open icon library, corrected tooltips
+  * Allow to show Payload as multiple Argument columns, default set to 0 argument columns
+  * Added ActionToggleButtons to Main toolbar to Control Plugins/Filters/SortByTime Enabled checkboxes. Replaced icons with open icon library, changed action button 
+    syncronisation
+
+2.13.0
+  * Updated qt to version 5.4.0
+  * Fix installation path for x86_64 linux
+  * Fix Ubuntu 64bit build
+  * Fix linux home path for cache and filters
+  * Some changes for MSVC
+  * Optional send "Get ECU SW Version" when online
+  * write settings: autoMarkWarn added
+  * DLT embedded fix for non-verbose DLT_CSTRING
+  * Added check if directory is writable when file save as.
+  * allow compilation using i686-w64-mingw32-qmake-qt4 under cygwin
+  * Fixed absolute home path for settings file in Linux
+  * Remove all white spaces (Carriage return, linefeed, tabs) from payload before export
+  * Output info about used compiler in Info Dialog.
+  * Added missing license headers.
+  * fix qdlt qdltargument size
+  * Fixes Bug 240: DLT Viewer is now able to handle large DLT files
+  * Added new plugin control interface reopenFile.
+  * Added hostname parameter to plugin interface stateChanged
+  * First import of DBus catalog.
+  * Send updateMsg and updateMsgDecoded also in logging only mode.
+  * Fixed false creation of filter index cache file
+  * Fixed showing corrupted message when index cache file is empty.
+  * Fixed not keeping selected DLT message when filter is changed.
+  * Fixed dbus plugin segmented messages
+  * Changed build script for dlt parser to Qt 5.3.1
+  * Command line parameters also allow big letters as file ending
+  * Changed configuration, cache and filters path. Create if not exist.
+  * Fixed directory paths in Linux
+  * Fixed missing payload in search view
+  * Update readme and install text
+  * Updated qt to version 5.3.1
+  * Fixed wrong sequence of plugin updateMsgXXX API
+
+2.12.0
+  * Fixed positive filter with marker not saved correctly
+  * Fixed wrongly displayed negative values in big endianess
+  * Format of Hex and Bit fields in DLT Viewer.
+  * Plugin interface for connect and disconnect
+  * Multi configuration file load in non-verbose plugin
+  * Mutlticore build script.
+  * Support of segmented network messages in dbus plugin.
+  * Adapted DBus Plugin to Network API.
+  * Added DBus plugin
+  * Added marker support.
+  * Removed unsupported platforms build scripts.
+  * Removed dlt statistic plugin, which will not be supported anymore.
+  * Added Header output to DLT Viewer plugin.
+  * Fixed: Crash when receiving corrupted messages.
+  * Fix: DLT Viewer shows messages sorted by time, even if the option is not enabled at startup
+  * Updated build script to Qt 5.3.
+  * Fixed use of non verbose mode with extended header.
+  * Extended non verbose plugin to differentiate messages by appid and ctid.
+  * Add session id to table view.
+  * Show Session/Process Id in DLT Viewer Plugin.
+  * Parser: Added Linux installation path
+  * Parser: Added DLT Embedded Example and further fix.
+  * Fixed missing refresh on some PCs.
+  * Parser: Initial version of reference DLT parser.
+
+2.11.0
+  * Completed .gitignore with more files to ensure clean statuses on Linux machines
+  * Moved intermediate compile time files to a build sub-directory for all project parts
+  * Split log files when reaching maximum size and attach date and time to filename.
+  * Fixed llvm static analyser problems findings.
+  * Fixed all warnings.
+  * cppcheck fixes for all errors and warnings.
+  * Fixed: Hang of dlt viewer when loading files with a lot of getLogInfo messages
+  * Added update button to statistic plugin.
+  * New Plugin Interfaces in QDltControl: New, Open, SaveAs, Clear and Quit
+  * Fixed: do not automatically enable scrolling when scrolling to bottom
+  * Fixed: Plugin interface initControl only called when updating ECU list
+  * Update Qt SDK to version 5.2.1.
+
+2.10.1
+  * Fixed crash when open big DLT Files at startup with autoconnect at startup.
+  * Added Logging only mode.
+  * Fixed reception time from milliseconds to microseconds.
+  * Fixed extraction of session id.
+  * Sort multiple log files by time.
+  * Open and display multiple DLT files at once.
+  * Optional automatic timezone settings.
+  * Added new control messages connection state, timezone and context unregister.
+  * Remove installer script from OSS repository.
+  * First implementation of dlt statistic plugin.
+  * Statistic features removed from dlt viewer plugin.
+  * Fixed warnings with windows mingw32 compiler.
+  * Plugin API parameter triggeredByUser is wrongly set.
+
+2.10.0
+  * Plugin interface to know about "Autoscroll button" enabled or disabled.
+  * DLT Viewer Plugin Interface to scroll to a specific index
+  * Fix: Filetransfer Plugin not works with default configuration.
+  * Do not disable plugins, if configuration cannot be loaded.
+  * Implementation of background Indexer and index cache.
+  * Fixed Qt5 build missing platform plugin windows.
+  * Fixed: Missing return value in exporterdialog.cpp.
+  * Fixed: QVariant not declared in QDltArgument.
+  * Added performance counter for indexing.
+  * Removed file mapping based indexing.
+  * Enable default filter and index cache by default.
+  * Added Windows Batch file to build with Qt5.1.1
+
+2.9.1
+  * New centralized export functionality for DLT, ASCII and CSV.
+  * Implementation of autoloading plugins configuration.
+  * Fix: DLT Trace can't be copy pasted (non Verbose).
+  * Added sqldriver directory for installation. Needed for plugins using sqldriver.
+  * Bug 86 - DLT Viever 2.10.0 RC DLT_13265.
+  * Bug 84 - Adding utf8 support to dlt-daemon, dlt-viewer.
+  * DLT viewer should only send optional configuration when connecting to target
+  * Added context registration information to ECU structure also when loading DLT files.
+  * Enhancement of Send Injection Dialog
+  * Add support for Drag and Drop to plugin configuration.
+  * Drag and Drop now supports dlf filter files
+  * Fixed: DLT Viewer plugin will not update decoded views, if plugin enabled after loading log file
+  * Bug-11: DLT-viewer, plugin API: selectedIdxMsg() only triggered on mouse click
+  * Bug-4: DLT-Viewer - Message incomplete in DLT-Viewer-Plugin
+  * Plugin support moved to qdlt library
+  * Multifilter support for fast indexing of multiple filters
+  * Added icons for apply config again
+  * Split up qdlt library for filters and filter index
+  * Performance improvement in filter handling
+  * Created a Windows installer for DLT-viewer. Included in build scripts.
+  * Optional suppressing of plugin  message box error when started via commandline parameter -s
+  * Greyed out non relevant tab in "ECU ADD/config" menu
+  * Highlight color of found line configurable
+  * Usage of "optimalTextColor" for markers
+  * Unified the progress dialog updates
+  * Multiple working directories for dlt viewer use cases
+  * DLTViewer: performance improvement of Qdlt::toAScii function which is heavily used in filtering 
+  * Default button of search window is "next"
+  * Search Previous/Next without search window
+  * Added -Wunused to project file. Removed most warnings.
+  * Added description of not yet implemented FLIF in file transfer plugin.
+  * Move maintoolbar creation to designer. Separate main and search toolbar.
+  * Added description for commandline based extraction of File Transfers.
+  * Added QT5 Combatibility
+  * Add build scripts for QT5, MSVC compilers.
+  * Split up constructor in sub-functions to get better overview.
+  * Search to List implemented.
+  * Added Refresh Rate Setting for updating view after incoming messages.
+  * Change filter button to checkboxes and a "Apply changes"-button
+  * Fixed Disable Plugins not working in all use cases
+  * Fixed Changing filters not shows last selected message again
+  * Fixed lost selection of messages after disabling filter
+  * Fixed Empty Tmp files not deleted
+  * Fixed Plugin destructors are not called
+  * Fixed Export and CopyToClipboard not using index order - instead using selection order
+  * Fixed dlt-viewer: changed serial interface settings not working after connection attempt
+  * Fixed Scroll button and Regexp button are using the toolbar incorrectly
+  * Fixed Dlt Viewer crash on Linux, when aborting a "Save as..." dialog
+  * Fixed Possible filterIndex corruption when enabling filters
+  * Fixed Filters are now applied when conversion is called from commandline.
+  * Fixed Selection persists now also when going from unfiltered to filtered view, like before in the other direction.
+  * Fixed Filetransfer file dump from commandline now also takes normal Windows paths.
+
+2.9.0
+  * Make rest of the warning dialogs modal, to prevent user from touching the UI.
+  * Remove rest of threading.
+  * Implement indexing using memory map.
+  * Add locks to prevent index corruption.
+  * Add locks to avoid crashes when doing file operations, while receiving.
+  * Workaround for QTBUG-26069
+  * Improve logic when plugins and filters are applied.
+  * User manual converted to asciidoc
+  * MOSTPlugin incorrect decoding fixed.
+  * MOSTDecoder crash fixed.
+  * Save File and Save Project Dialog now append a file extension if none is given by user now also under Linux.
+  * Add possibility to export message to a CSV file.
+  
+  * Added Filter checkboxes are automatically checked when the user typing in the filter the first time
+  * Added Regular Expressions in Filter configuration
+  * Added "Jump to" function
+  * Added an option to mainwindow search bar to use Regular Expressions instead of simple match
+  * Added a mailto dlt-support@bmw.com in DLT Viewer help dialog
+  
+  * Fixed  DLT Viewer shows unexpected behaviour when loading file with filters enabled
+  * Fixed "Filter Add ..." is disactivated
+  * Fixed Export from command line with filters not working
+  * Fixed DLT Viewer shows unexpected behaviour when loading file with filters enabled
+  * Fixed Using the search function it is not possible to cancel the search
+  * Fixed Working directory is not set correctly using "Open file"
+  * Fixed Export as CSV with enabled filter does not work correct
+
+
+2.8.0
+  * [GDLT-128] Improvement of temporary file handling.
+  * Ensure connection properties are propagated to connection objects.
+  * Added OS X compatibility
+  * [GDLT-108] Command line option to execute command plugins
+
+2.7.1
+  * [GSWD-123][BZ-5][BZ-12]: Fix connection handling when loading a project file.
+  * [BZ-7]: Remove threading.
+  * Fix compiler warnings
+   
+2.7.0
+
+   * Show decoded messages in DLt viewer plugin
+   * [GDLT-106] DLT-viewer hangs in serial receiving
+   * Added example files of plugins configuration to SDK
+   * Added warning to user when plugin loading failed
+   * Cleaned up filter menu
+   * [GDLT-143] Multithreading implementation: process messages with plugins
+   * [GDLT-143] Multithreading implementation: creating filter index
+   * [GDLT-143] Multithreading implementation: creating dlt index
+   * !!! *** Important: API change of plugininterface 
+   * Modified methods reloadlogfile and read to use new plugininterface methods and updated all plugins
+   * Moved duplicate Filter Dialog read and write operation into new function
+   * [GDLT-125] DLT Viewer often cannot reconnect TCP connection automatically when power supply is interrupted
+   * Added build and SDK generation script for windows.
+   * [GDLT-124] Filetransfer plugin performance enhanced
+   * [GDLT-135] Version control message is not displayed as ASCII
+   * [GDLT-111]: Change to Case Insensitive to ignore case in extension
+   * [GDLT-122] Time parameter is always local time fixed
+   * [GDLT-107] Plugin interface extension for sending commands to plugins
+   * [GDLT-39]q Enable drag&drop ordering of filters
+   * [GENDLT-37] MOST plugin should be able to decode messages segmented over 
+                 several log messages
+   * [GDLT-130] Save As DLT file with same file name deletes file
+   * Changed MinGW Path for generating SDK with batch file.
+   * Release test fix: Moved deletion of serialport to ecuitem destructor. Remove automatic reconnect for serial connections.
+   * Added dlt viewer plugin programming guide.
+   * Added example filetransferplugin configuration file
+   * Release test fix: Increase max accepted message size to account for dlt_get_log_info
+   * Release fix: Also accept S_RAW in lieu of S_RAWD in nonverboseplugin
+   
+2.6.0
+
+   * !!! *** IMPORTANT: In this release, all plugins are deactivated by default. You can enable your plugins in the "plugins"-tab. *** !!!
+   * !!! *** IMPORTANT: API changed for Decoderinterace - see GDLT-80 *** !!!
+   * [GDLT-87] Added new version of QextSerialPort v1.2 BETA - MIT License
+   * [GDLT-80] Decoderinterface extended - plugins get the information if the action for isMsg or decodeMsg  was triggered by the user
+   * [GDLT-78] Extended API of the decoderinterface. Plugins gets a notification if the state of the ECU connection changed
+   * [GDLT-58] Merging/Append filter files is possible
+   * [GDLT-61] ApId and CtId description should be left aligned fixed
+   * [GDLT-59] Added Copy to clipboard in context menu of the tablewidget
+   * Reworked the filterUpdate calls
+   * Increased max cost of cache to 5000 and fixed bug in filetransferplugin
+   * [GDLT-60] Cancel button doesn't react fixed
+   * [GDLT-96] Added a QCache to speedup getMsg. treeview using optimized getMsg methods
+   * [GDLT-98] Added message box with warning if FRAMES are ignored due to duplicated id in the xml
+   * [GDLT-97] Use constData() instead of data() when buffer is just read
+   * [GDLT-66] Plugin is deactivated but after restarting the DLT Viewer the plugin will be called to handle/parse messages fixed
+   * [GDLT-77] Open a .dlt file with double click creates a config.ini file fixed
+   * Added some statistics as a single tab to the dlt-viewer plugin
+   * Removed unneeded signal for modelChanged and clearing the selection model
+   * Fixed bug in statisticstab of dltviewerplugin and extended with more statistics
+   * Fixed bug in window title of plugins
+   
+2.5.1
+
+   * Change to the Mozilla Public License Version 2.0
+
+2.5.0
+
+   * [GDLT-32] Store DLT Viewer configuration in an ini file instead of using the registry 
+   * [GDLT-34] Save the DLT-viewr version to config/registry and delete specific values when a new minor version of the viewer is started 
+   * [GDLT-7 + GDLT-6] DLT Viewer and plugin performance enhanced
+   * [GDLT-33] Checkbox in the project settings to hide file transfer messages 
+   * [GDLT-45] Improve detection of filetransferMessages (Related to GDLT-33)
+   * [GENDLT-14] DLT Viewer tested with Qt SDK version 1.2 
+   * [GDLT-31] Tracefile content stored different under Ubuntu 64 bit version compared to Ubuntu/Win 32 Bit version 
+   * [GDLT-43]  Filter on/off toggle button is broken when "Hide file transfer messages" is selected in settings 
+ 
+2.4.3:
+
+   * Fixed an issue where the plugins could not modify the message passed to them.
+
+2.4.2:
+
+   * [GSW-134] Expand and collapse all context menu in the configWidget (shortcut ctrl+- and ctrl++)
+   * [GSW-112] Possibility to enable/disable filters with a check-box in the filter widget
+   * [GSW-111] Checkbox in project settings for automatically color errors and wanrings in the viewer
+   * [GSW-131] The viewer looks in relativ to the executable in the ./plugins directory
+   * [GSW-129] Double klick on .dlt or .dlp opens dlt_viewer and loads automatically logfile or projectfile when dlt_viewer is defined as the standard program for .dlt or .dlp files in Windows
+   * Plugininformation is called when the Pluginitem is expanded and not only when the Plugin is loaded
+   * [GSW-107] Check if the plugins are really deactivated when they are hidden
+   * [GENDLT-11] Wrong HTML format for < and > of the viewer plugin
+   * [GSW-118] When changing filters a popup with an abort button appears this button seems to do nothing
+   * [GSW-130] The filer and marker won't be activated after loading a project file
+   * [GSW-144] No second iteration to search and return the correct application and context description is possible
+   * [GENDLT-12] DLT Viewer Crashes fixed
+
+2.4.1:
+
+   * Deleted unnecessary widget of mainwindow 
+   * Added Linux Desktop Icon and Description
+   * [GSW-103] Prove if the plugins directory in the dlt-viewer directory exists and is readable before loading plugins
+   * [GSW-70] Button for save project in the toolbar
+   * Fixed Bug in Filetransferplugin - Clear list button
+   * Fixed initialisation of injection plugin interface.
+   * [GSW-109] Printing of dlt-viewer usage not visibile in windows. Command line usage for windows added to the help menu of the dlt viewer.
+   * [GSW-104] Overload operator< for detailed sorting of appIds and ctIds in the configWidget of the viewer
+   * [GSW-102] The dlt viewer plugin snips a part of the payload if < is in the payload
+
+2.4.0:
+
+   * [GSW-68] Command line parameter for test automation. Start the "dlt_viewer -h" from command line to print usage.
+   * [GSW-88] Set log level/trace status for multiple contexts at once (multiple selection with "Shift" or "Crtl").
+   * [GSW-90] Configurable font size of the table content fixed. The table font size is configurable in the settings dialog - tab table.
+   * [GSW-84] User hast to confirm to clear the log table
+   * [GSW-85] Change button icon of Enable filter to a filter symbol and enable filter by default
+   * [GSW-89] Resize payload column of DLT message view. Double click on table header resizes the column.
+   * [GSW-67] Store and restore global settings in project files.
+   
+2.3.0:
+
+   * [GSW-20] Table View should also display description of context for each displayed DLT message - choose id or description within settings
+   * [GSW-63] Load and Save Filter configurations  
+   * [GSW-17] Sorting of Contexts and Applications by id or descriptions.
+   * [GSW-64] Select Filter from last used filter configuration.
+   * [GSW-8] Version and interface check of plugins
+   * [GSW-21] Enhance search function: Start from current position / start from beginning
+   * [GSW-14] Doxygen based documentation of DLT Viewer
+   * [GSW-65] Using RGB colors via color picker for filter marker.
+   * [GSW-36] Search dialog marks search text when opening search dialog.
+   * [GSW-58] Drag and Drop of DLT Files and project files Implemented.
+   * Start of application with DLT or project file improved.
+   * Export of selected messages improved, including export to Clipboard.
+   * Filter copy functionality added.
+   * Batch file for creating SDK added.
+   * [GSW-26] First implementation of injection interface in control plugin interface.
+   * [GSW-37] Filters can be added by context menu in ECU configuration or DLT log messages view.
+   * Filters and Markers aggregated to one configuration.
+   * [GSW-18][GSW-34]Filter parameters added.
+   * [GSW-6] Marker functionaliy added.
+   * Plugins are loaded now from three directories: Directory from settings, plugins directory and /usr/share/dlt-viewer directory.
+   * Linux: Plugins are loaded also from /usr/share/dlt-viewer directory
+   * Fixed crash when double clicking on child item below plugin item.
+   * All directory and file search dialog now use the same working directory.
+   * [GSW-35] Filtered messages have other message ids then unfiltered messages fixed.
+   * Fixed Endianess failures of non verbose plugin.
+   * [GSW-30] Byte order of payload is not diplayed correctly fixed.
+   * [GSW-24] Timestamp in ASCII Export is not correctly displayed fixed.
+   * [GSW-22] Plugin Non Verbose: Zero arguments displays "[Id]|" fixed.
+
+2.2.0:
+
+   * Added version to window title
+   * Filtering of decoded messages by decode plugins now possible
+   * Negative filters and markers functionality added
+   * Moved to completely new decode plugin concept
+   * Rows in message table can now be selected with arrow keys
+   * Verbose mode configuration in ECU added
+   * New Plugin interface with Decoder and Viewer support
+   * Join and split DLT files
+   * Append DLT file functionality added
+   * Start DLT viewer with a DLT Viewer Project as argument.
+   * Colour marking of contexts, if synchronized with dlt daemon
+   * Import DLT Stream with serial header functionality addded incl. resync to serial header and error counter
+   * Fixed bug when using COM ports bigger than 9
+   * Fixies big endian target
+   * DLT header parameter Timestaps was handled in the wrong endianes format, big endian is correct now
+   * Crashes when payload contains strings with corrupted length
+   * Corrected non verbose plugin "S_RAWD" signal type
+   * Non verbose plugin does not decode verbose messages any more
+   * Fixed bug in search with regular expressions, case sensitive/insensitive is used now in this combination
+   * ECU Configuration did not save sync to serial header option (TCP and Serial)
+
+2.1.0:
+
+   * New Qt based implementation of viewer
+   * Indiviual columns for header fields
+   * Export to ASCII file
+   * Import of Raw DLT Stream files (Without DLT Storage Header)
+   * Search function added to find ASCII Text in Header and Payload
+   * Project based management of configurations
+   * Decoder Plugin support added as dynamic loaded libraries
+   * Optional syncing to serial header added
+   * Filter->Clear all added
+   * The application now has its own icon
+   * Scroll on/off button added
+   * Description additionally shows the TCP port number
+   * Search: Regular expressions can now be used 
+   * History for open files/projects/TCP Hostnames
+   * Enable/Disable timing messages per ECU is now possible
+   * Extended scrolling functionality (enable/disable scrolling by scrolling in list)
+   * Changed serial library because of sporadic crashes of teh application
+   * Only one filter with same name can be added now
+   * Corrected initialization of resync mode
+   * Bug in Filter handling fixed (concerned Linux only)
+   * Bug in structure alignment fixed (concerned Windows only)
+   * Automatic sending of default log level, display status and request for timing packets fixed
+   * Displaying connection status fixed
+
+

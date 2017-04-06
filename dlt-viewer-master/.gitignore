@@ -1,0 +1,10 @@
+.gitconfig
+*.pro.user
+build/
+.project
+Makefile
+buildlib/
+release/
+.cproject
+*.pro.user*
+.settings
